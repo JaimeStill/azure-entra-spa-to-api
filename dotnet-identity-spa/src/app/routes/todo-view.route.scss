@@ -1,0 +1,8 @@
+div.grid {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+
+    table {
+        min-width: inherit;
+    }
+}

@@ -1,0 +1,38 @@
+<div class="grid full-height mat-app-background"
+     [ngClass]="themer.isLight ? 'app-light' : 'app-dark'">
+    <mat-toolbar>
+        <span class="cursor-pointer"
+              routerLink="/">Dotnet Identity Spa</span>
+        <span flexChild></span>
+        @if (identity.account(); as acct) {
+            <span class="mr8">Welcome, {{acct.name}}</span>
+            <button mat-icon-button
+                    matTooltip="Logout"
+                    (click)="identity.logout()">
+                <mat-icon>logout</mat-icon>
+            </button>
+        } @else {
+            <button mat-icon-button
+                    matTooltip="Login"
+                    (click)="identity.login()">
+                <mat-icon>login</mat-icon>
+            </button>
+        }
+        <button mat-icon-button
+                color="primary"
+                matTooltip="Todo List"
+                (click)="navigate(['todo-view'])">
+            <mat-icon>fact_check</mat-icon>
+        </button>
+        <button mat-icon-button
+                [matTooltip]="themer.isLight ? 'Light' : 'Dark'"
+                [ngClass]="themer.isLight ? 'color-amber' : 'color-text'"
+                (click)="themer.toggleTheme()">
+            <mat-icon *ngIf="themer.isLight">brightness_5</mat-icon>
+            <mat-icon *ngIf="!(themer.isLight)">brightness_3</mat-icon>
+        </button>
+    </mat-toolbar>
+    <div class="overflow">
+        <router-outlet *ngIf="!isIframe"></router-outlet>
+    </div>
+</div>

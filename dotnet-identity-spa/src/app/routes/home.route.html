@@ -1,0 +1,50 @@
+@if(loggedIn()) {
+    <div class="grid full-height">
+        <div class="m8 p8 background-card">
+            <p class="m8 mat-h2">
+                ID Token Claims
+            </p>
+        </div>
+        <div class="overflow">
+            <table mat-table
+                class="mat-elevation-z0 mx8"
+                [dataSource]="claims()">
+                <ng-container matColumnDef="claim">
+                    <th mat-header-cell
+                        *matHeaderCellDef> Claim </th>
+                    <td mat-cell
+                        *matCellDef="let element"> {{element.claim}} </td>
+                </ng-container>
+                <ng-container matColumnDef="value">
+                    <th mat-header-cell
+                        *matHeaderCellDef> Value </th>
+                    <td mat-cell
+                        *matCellDef="let element"> {{element.value}} </td>
+                </ng-container>
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell
+                        *matHeaderCellDef> Description </th>
+                    <td mat-cell
+                        *matCellDef="let element"> {{element.description}} </td>
+                </ng-container>
+                <tr mat-header-row
+                    *matHeaderRowDef="columns sticky: true"></tr>
+                <tr mat-row
+                    *matRowDef="let row; columns: columns;"></tr>
+            </table>
+        </div>
+    </div>
+} @else {
+    <div flexContainer
+        flexDirection="column"
+        flexMain="start"
+        flexCross="stretch"
+        class="m8 p8 background-card">
+        <p class="m8 mat-h2">Angular SPA with MSAL Angular</p>
+        <p class="m8">Sign-in with Azure Entra and call a protected .NET 8 Web API</p>
+        <p class="m8">
+            This sample demonstrates how to configure MSAL Angular to sign-in, sign-out, and acquire an
+            access token for a protected .NET 8 Web API.
+        </p>
+    </div>
+}
